@@ -1,0 +1,4 @@
+AlbacoreDeed
+============
+
+Common java utilities
