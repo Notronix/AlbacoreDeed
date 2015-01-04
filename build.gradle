@@ -1,4 +1,21 @@
 apply plugin: 'java'
+apply plugin: 'jacoco'
+apply plugin: 'findbugs'
+apply plugin: 'checkstyle'
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination "${buildDir}/reports/jacoco"
+    }
+}
+
+findbugs {
+    ignoreFailures = true
+    effort = "max"
+    reportLevel = "high"
+}
 
 sourceCompatibility = 1.8
 version = '1.0'
@@ -17,9 +34,8 @@ dependencies {
 }
 
 jar {
-    from configurations.compile.collect { zipTree it }
     manifest {
         attributes 'Implementation-Title': 'Albacore by Notronix',
-                'Implementation-Version': version
+                   'Implementation-Version': version
     }
 }
