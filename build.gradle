@@ -38,7 +38,7 @@ dependencies {
 
 jar {
     manifest {
-        attributes 'Implementation-Title': rootProject.name + ' by Notronix',
+        attributes 'Implementation-Title': rootProject.name,
                    'Implementation-Version': version,
                    'Implementation-Vendor': 'Notronix'
     }
