@@ -2,7 +2,7 @@ package com.notronix.albacore;
 
 public abstract class NumberUtils
 {
-    public static int getIntValue(Object object) throws NullPointerException, IllegalArgumentException
+    public static int intValueOf(Object object) throws NullPointerException, IllegalArgumentException
     {
         if (object == null)
         {
@@ -17,7 +17,7 @@ public abstract class NumberUtils
         throw new IllegalArgumentException(object.getClass().getSimpleName() + " is not a Number instance.");
     }
 
-    public static long getLongValue(Object object)
+    public static long longValueOf(Object object)
     {
         if (object == null)
         {
@@ -32,7 +32,7 @@ public abstract class NumberUtils
         throw new IllegalArgumentException(object.getClass().getSimpleName() + " is not a Number instance.");
     }
 
-    public static double getDoubleValue(Object object) throws IllegalArgumentException
+    public static double doubleValueOf(Object object) throws IllegalArgumentException
     {
         if (object == null)
         {

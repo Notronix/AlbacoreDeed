@@ -1,6 +1,5 @@
 package com.notronix.albacore;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -16,18 +15,28 @@ public class ContainerUtilsTest
     @Test
     public void testNone()
     {
-        assertTrue("There should be no items found.", thereAreNo(null));
-        assertTrue("There should be no items found.", thereAreNo(Arrays.asList()));
-        assertFalse("There should be items found.", thereAreNo(Arrays.asList("1")));
+        assertTrue("There should be no items found.", thereAreNo((Collection<?>) null));
+        assertTrue("There should be no items found.", thereAreNo((Map<?, ?>) null));
+
+        assertTrue("There should be no items found.", thereAreNo(Collections.emptyList()));
+        assertTrue("There should be no items found.", thereAreNo(Collections.emptyMap()));
+
+        assertFalse("There should be items found.", thereAreNo(Collections.singletonList("1")));
         assertFalse("There should be items found.", thereAreNo(Arrays.asList("1", "2")));
+
+        Map<String, String> multiItemMap = new HashMap<>();
+        multiItemMap.put("key1", "value1");
+        multiItemMap.put("key2", "value2");
+        assertFalse("There should be items found.", thereAreNo(multiItemMap));
+        assertFalse("There should be items found.", thereAreNo(Collections.singletonMap("key", "value")));
     }
 
     @Test
     public void testOneOrMore()
     {
         assertFalse("There should not be one or more items found.", thereAreOneOrMore((Collection<?>) null));
-        assertFalse("There should not be one or more items found.", thereAreOneOrMore(Arrays.asList()));
-        assertTrue("There should be one or more items found.", thereAreOneOrMore(Arrays.asList("1")));
+        assertFalse("There should not be one or more items found.", thereAreOneOrMore(Collections.emptyList()));
+        assertTrue("There should be one or more items found.", thereAreOneOrMore(Collections.singletonList("1")));
         assertTrue("There should be one or more items found.", thereAreOneOrMore(Arrays.asList("1", "2")));
 
         assertFalse("There should not be one or more items found.", thereAreOneOrMore((Map<?, ?>) null));
@@ -42,10 +51,19 @@ public class ContainerUtilsTest
     @Test
     public void testMultiple()
     {
-        assertFalse("There should not be multiple items found.", thereAreMultiple(null));
-        assertFalse("There should not be multiple items found.", thereAreMultiple(Arrays.asList()));
-        assertFalse("There should not be multiple items found.", thereAreMultiple(Arrays.asList("1")));
+        assertFalse("There should not be multiple items found.", thereAreMultiple((Collection<?>) null));
+        assertFalse("There should not be multiple items found.", thereAreMultiple((Map<?, ?>) null));
+
+        assertFalse("There should not be multiple items found.", thereAreMultiple(Collections.emptyList()));
+        assertFalse("There should not be multiple items found.", thereAreMultiple(Collections.singletonList("1")));
         assertTrue("There should be multiple items found.", thereAreMultiple(Arrays.asList("1", "2")));
+
+        Map<String, String> multiItemMap = new HashMap<>();
+        multiItemMap.put("key1", "value1");
+        multiItemMap.put("key2", "value2");
+        assertTrue("There should be multiple items found.", thereAreMultiple(multiItemMap));
+        assertFalse("There should not be multiple items found.", thereAreMultiple(Collections.emptyMap()));
+        assertFalse("There should not be multiple items found.", thereAreMultiple(Collections.singletonMap("key", "value")));
     }
 
     @Test
@@ -55,7 +73,7 @@ public class ContainerUtilsTest
         String s2 = "s2";
 
         assertNull("Nothing should be returned.", theFirst(null));
-        assertNull("Nothing should be returned.", theFirst(Arrays.asList()));
+        assertNull("Nothing should be returned.", theFirst(Collections.emptyList()));
         assertEquals("First item is wrong.", s1, theFirst(Arrays.asList(s1, s2)));
         assertEquals("First item is wrong.", s2, theFirst(Arrays.asList(s2, s1)));
     }
@@ -68,7 +86,7 @@ public class ContainerUtilsTest
         String s3 = "s3";
 
         assertNull("Nothing should be returned.", theSecond(null));
-        assertNull("Nothing should be returned.", theSecond(Arrays.asList()));
+        assertNull("Nothing should be returned.", theSecond(Collections.emptyList()));
         assertEquals("First item is wrong.", s2, theSecond(Arrays.asList(s1, s2, s3)));
         assertEquals("First item is wrong.", s1, theSecond(Arrays.asList(s2, s1, s3)));
 
@@ -87,24 +105,19 @@ public class ContainerUtilsTest
     @Test
     public void testSize()
     {
-        assertEquals("Size should be 0.", 0, numberOf(null));
-        assertEquals("Size should be 0.", 0, numberOf(Arrays.asList()));
-        assertEquals("Size should be 1.", 1, numberOf(Arrays.asList("1")));
+        assertEquals("Size should be 0.", 0, numberOf((Collection<?>) null));
+        assertEquals("Size should be 0.", 0, numberOf((Map<?, ?>) null));
+
+        assertEquals("Size should be 0.", 0, numberOf(Collections.emptyList()));
+        assertEquals("Size should be 1.", 1, numberOf(Collections.singletonList("1")));
         assertEquals("Size should be 3.", 3, numberOf(Arrays.asList("1", "2", "3")));
-    }
 
-    @Test
-    public void testPrintMap()
-    {
-        assertEquals("Should be an empty string", "", printMap(null));
-
-        Map<String, String> map = new HashMap<>();
-        assertEquals("Should be an empty string", "", printMap(map));
-
-        map.put("1", "One");
-        assertEquals("1: One", printMap(map));
-
-        map.put("2", "Two");
-        assertThat(printMap(map), CoreMatchers.either(CoreMatchers.is("2: Two; 1: One")).or(CoreMatchers.is("1: One; 2: Two")));
+        Map<String, String> multiItemMap = new HashMap<>();
+        multiItemMap.put("key1", "value1");
+        multiItemMap.put("key2", "value2");
+        multiItemMap.put("key3", "value3");
+        assertEquals("Size should be 3.", 3, numberOf(multiItemMap));
+        assertEquals("Size should be 0.", 0, numberOf(Collections.emptyMap()));
+        assertEquals("Size should be 1.", 1, numberOf(Collections.singletonMap("key", "value")));
     }
 }

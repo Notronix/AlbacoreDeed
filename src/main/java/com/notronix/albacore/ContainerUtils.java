@@ -5,26 +5,34 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import static org.apache.commons.collections4.MapUtils.isEmpty;
-
 public abstract class ContainerUtils
 {
     public static boolean thereAreMultiple(Collection<?> items)
     {
-        return (items != null && items.size() > 1);
+        return (numberOf(items) > 1);
+    }
+
+    public static boolean thereAreMultiple(Map<?, ?> items)
+    {
+        return (numberOf(items) > 1);
     }
 
     public static boolean thereAreOneOrMore(Collection<?> items)
     {
-        return (items != null && items.size() > 0);
+        return (numberOf(items) > 0);
     }
 
     public static boolean thereAreOneOrMore(Map<?, ?> items)
     {
-        return (items != null && !items.isEmpty());
+        return (numberOf(items) > 0);
     }
 
     public static boolean thereAreNo(Collection<?> items)
+    {
+        return !thereAreOneOrMore(items);
+    }
+
+    public static boolean thereAreNo(Map<?, ?> items)
     {
         return !thereAreOneOrMore(items);
     }
@@ -59,33 +67,11 @@ public abstract class ContainerUtils
 
     public static int numberOf(Collection<?> items)
     {
-        if (thereAreNo(items))
-        {
-            return 0;
-        }
-
-        return items.size();
+        return (items == null ? 0 : items.size());
     }
 
-    public static String printMap(Map<?, ?> map)
+    public static int numberOf(Map<?, ?> items)
     {
-        if (isEmpty(map))
-        {
-            return "";
-        }
-
-        String retVal = "";
-
-        for (Map.Entry entry : map.entrySet())
-        {
-            if (StringUtils.isNotBlank(retVal))
-            {
-                retVal += "; ";
-            }
-
-            retVal += entry.getKey() + ": " + entry.getValue();
-        }
-
-        return retVal;
+        return (items == null ? 0 : items.size());
     }
 }
