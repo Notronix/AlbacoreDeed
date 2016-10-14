@@ -9,7 +9,7 @@ There's nothing fishy about it... the name AlbacoreDeed is actually just an anag
 Examples
 ============
 
-<code>
+```java
 public void iterateList(List<Object> items) {
     if (thereAreOneOrMore(items) {
         for (Object item : items) {
@@ -17,4 +17,4 @@ public void iterateList(List<Object> items) {
         }
     }
 }
-</code>
+```
