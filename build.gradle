@@ -77,13 +77,13 @@ uploadArchives {
             pom.project {
                 name rootProject.name
                 packaging 'jar'
-                description 'A collection of human readable utility methods.'
-                url 'https://github.com/Notronix/AlbacoreDeed/'
+                description rootProject.description
+                url rootProject.url
 
                 scm {
-                    url 'scm:git@github.com:Notronix/AlbacoreDeed.git'
-                    connection 'scm:git@github.com:Notronix/AlbacoreDeed.git'
-                    developerConnection 'scm:git@github.com:Notronix/AlbacoreDeed.git'
+                    url 'scm:git@github.com:Notronix/' + rootProject.name + '.git'
+                    connection 'scm:git@github.com:Notronix/' + rootProject.name + '.git'
+                    developerConnection 'scm:git@github.com:Notronix/' + rootProject.name + '.git'
                 }
 
                 licenses {

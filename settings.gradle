@@ -1,2 +1,5 @@
 rootProject.name = 'AlbacoreDeed'
+rootProject.description = 'A collection of human readable utility methods.'
+rootProject.url = 'https://github.com/Notronix/AlbacoreDeed/'
+
 
