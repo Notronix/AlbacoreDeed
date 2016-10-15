@@ -21,8 +21,6 @@ findbugs {
 sourceCompatibility = 1.8
 group = 'com.notronix'
 version = '1.0.0'
-sonatypeUsername = System.getenv("sonatype.username")
-sonatypePassword = System.getenv("sonatype.password")
 
 repositories {
     mavenCentral()
