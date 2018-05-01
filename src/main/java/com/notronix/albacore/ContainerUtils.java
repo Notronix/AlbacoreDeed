@@ -5,6 +5,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import static java.util.Collections.emptyList;
+import static java.util.Collections.singletonList;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.IntStream.range;
+
 public abstract class ContainerUtils
 {
     public static boolean thereAreMultiple(Collection<?> items)
@@ -73,5 +79,19 @@ public abstract class ContainerUtils
     public static int numberOf(Map<?, ?> items)
     {
         return (items == null ? 0 : items.size());
+    }
+
+    public static <T> List<List<T>> separateIntoGroups(List<T> items, int maxGroupSize) {
+        if (thereAreNo(items)) {
+            return emptyList();
+        }
+
+        if (numberOf(items) <= maxGroupSize) {
+            return singletonList(items);
+        }
+
+        return range(0, items.size()).boxed().collect(groupingBy(index -> index / maxGroupSize)).values().stream()
+                .map(indices -> indices.stream().map(items::get).collect(toList()))
+                .collect(toList());
     }
 }
