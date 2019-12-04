@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AlbacoreDeed.iml" filepath="$PROJECT_DIR$/.idea/modules/AlbacoreDeed.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AlbacoreDeed.iml" filepath="$PROJECT_DIR$/.idea/modules/AlbacoreDeed.iml" group="AlbacoreDeed" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/AlbacoreDeed_main.iml" filepath="$PROJECT_DIR$/.idea/modules/AlbacoreDeed_main.iml" group="AlbacoreDeed" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/AlbacoreDeed_test.iml" filepath="$PROJECT_DIR$/.idea/modules/AlbacoreDeed_test.iml" group="AlbacoreDeed" />
     </modules>
