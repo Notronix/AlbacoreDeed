@@ -11,6 +11,7 @@ import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.IntStream.range;
 
+@SuppressWarnings("unused")
 public abstract class ContainerUtils
 {
     public static boolean thereAreMultiple(Collection<?> items)

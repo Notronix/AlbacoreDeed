@@ -1,4 +1,4 @@
-package com.notronix.functional;
+package com.notronix.albacore;
 
 import java.util.Collection;
 import java.util.List;
@@ -10,6 +10,7 @@ import static java.lang.Boolean.TRUE;
 import static java.util.Objects.requireNonNull;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
+@SuppressWarnings("unused")
 public abstract class Predicates
 {
     private Predicates() {
