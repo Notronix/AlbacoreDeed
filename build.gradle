@@ -4,7 +4,7 @@ apply plugin: 'signing'
 
 sourceCompatibility = 1.8
 group = 'com.notronix'
-version = '2.0.4'
+version = '2.0.5'
 
 repositories {
     mavenCentral()

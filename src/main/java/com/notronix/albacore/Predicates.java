@@ -1,7 +1,6 @@
 package com.notronix.albacore;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -40,7 +39,7 @@ public abstract class Predicates
         };
     }
 
-    public static <T> Predicate<T> matchesNone(List<Predicate<T>> predicates) {
+    public static <T> Predicate<T> matchesNone(Collection<Predicate<T>> predicates) {
         return t -> {
             for (Predicate<? super T> predicate : predicates) {
                 if (predicate.test(t)) {

@@ -5,8 +5,10 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static com.notronix.albacore.ContainerUtils.*;
+import static java.util.stream.IntStream.range;
 import static org.junit.Assert.*;
 
 @RunWith(JUnit4.class)
@@ -119,5 +121,16 @@ public class ContainerUtilsTest
         assertEquals("Size should be 3.", 3, numberOf(multiItemMap));
         assertEquals("Size should be 0.", 0, numberOf(Collections.emptyMap()));
         assertEquals("Size should be 1.", 1, numberOf(Collections.singletonMap("key", "value")));
+    }
+
+    @Test
+    public void testSeparateIntoGroups() {
+        assertNotNull("result should not be null", separateIntoGroups(null, 2));
+        assertEquals("size should be 0", 0, separateIntoGroups(null, 2).size());
+
+        List<String> strings = range(0, 10).boxed().map(Object::toString).collect(Collectors.toList());
+        assertEquals("size should be 1", 1, separateIntoGroups(strings, 20).size());
+        assertEquals("size should be 2", 2, separateIntoGroups(strings, 5).size());
+        assertEquals("size should be 4", 4, separateIntoGroups(strings, 3).size());
     }
 }

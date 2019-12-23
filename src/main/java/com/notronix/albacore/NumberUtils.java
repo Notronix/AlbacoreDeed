@@ -9,45 +9,36 @@ public abstract class NumberUtils
 {
     private static final Pattern pattern = Pattern.compile("[\\D]*([\\d,]+\\.[\\d]{1,2}).*$");
 
-    public static int intValueOf(Object object) throws NullPointerException, IllegalArgumentException
-    {
-        if (object == null)
-        {
+    public static int intValueOf(Object object) throws NullPointerException, IllegalArgumentException {
+        if (object == null) {
             throw new NullPointerException("object is null.");
         }
 
-        if (object instanceof Number)
-        {
+        if (object instanceof Number) {
             return ((Number) object).intValue();
         }
 
         throw new IllegalArgumentException(object.getClass().getSimpleName() + " is not a Number instance.");
     }
 
-    public static long longValueOf(Object object)
-    {
-        if (object == null)
-        {
+    public static long longValueOf(Object object) {
+        if (object == null) {
             throw new NullPointerException("object is null.");
         }
 
-        if (object instanceof Number)
-        {
+        if (object instanceof Number) {
             return ((Number) object).longValue();
         }
 
         throw new IllegalArgumentException(object.getClass().getSimpleName() + " is not a Number instance.");
     }
 
-    public static double doubleValueOf(Object object) throws IllegalArgumentException
-    {
-        if (object == null)
-        {
+    public static double doubleValueOf(Object object) throws IllegalArgumentException {
+        if (object == null) {
             throw new NullPointerException("object is null.");
         }
 
-        if (object instanceof Number)
-        {
+        if (object instanceof Number) {
             return ((Number) object).doubleValue();
         }
 
@@ -75,28 +66,21 @@ public abstract class NumberUtils
      * @return a double value representing a number found in the provided value.
      * @throws ParseException if no double value is found or if there are errors while parsing the provided value.
      */
-    public static Double parseDoubleValue(String value) throws ParseException
-    {
-        if (isBlank(value))
-        {
+    public static Double parseDoubleValue(String value) throws ParseException {
+        if (isBlank(value)) {
             throw new ParseException("empty value");
         }
 
-        try
-        {
+        try {
             return Double.parseDouble(value);
         }
-        catch (Exception e)
-        {
+        catch (Exception e) {
             Matcher matcher = pattern.matcher(value);
-            if (matcher.matches())
-            {
-                try
-                {
-                    return Double.parseDouble(matcher.group(1).replaceAll(",",""));
+            if (matcher.matches()) {
+                try {
+                    return Double.parseDouble(matcher.group(1).replaceAll(",", ""));
                 }
-                catch (Exception ex)
-                {
+                catch (Exception ex) {
                     throw new ParseException("Failed to parse double value.", ex);
                 }
             }

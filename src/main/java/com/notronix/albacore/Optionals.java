@@ -1,8 +1,9 @@
 package com.notronix.albacore;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.BiConsumer;
 import java.util.function.Function;
@@ -19,20 +20,20 @@ public abstract class Optionals
     private Optionals() {
     }
 
-    public static java.util.Optional<String> ofBlankable(String value) {
+    public static Optional<String> ofBlankable(String value) {
         return isBlank(value) ? empty() : of(value);
     }
 
-    public static <T> java.util.Optional<List<T>> ofEmptiable(List<T> value) {
+    public static <T> Optional<Collection<T>> ofEmptiable(Collection<T> value) {
         return thereAreNo(value) ? empty() : of(value);
     }
 
     @Deprecated() // use Optional<T> filter(Predicate<? super T> predicate)
-    public static <T> java.util.Optional<T> ofPredicate(T value, Predicate<T> predicate) {
+    public static <T> Optional<T> ofPredicate(T value, Predicate<T> predicate) {
         return predicate.test(value) ? empty() : of(value);
     }
 
-    public static <K, V> java.util.Optional<Map<K, V>> ofEmptiable(Map<K, V> value) {
+    public static <K, V> Optional<Map<K, V>> ofEmptiable(Map<K, V> value) {
         return thereAreNo(value) ? empty() : of(value);
     }
 
