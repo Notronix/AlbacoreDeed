@@ -20,7 +20,7 @@ public abstract class Optionals
     private Optionals() {
     }
 
-    public static Optional<String> ofBlankable(String value) {
+    public static <T extends CharSequence> Optional<T> ofBlankable(T value) {
         return isBlank(value) ? empty() : of(value);
     }
 
